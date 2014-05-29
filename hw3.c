@@ -2,6 +2,8 @@
  * hw3.c - a.k.a. the 8-queens problem in parallel.
  * @author: Anton Erholt - <aerholt@kth.se>
  * 
+ * Implemented using OpenMP.
+ * 
  * A board is represented with the solution struct,
  * which contains an array of ints for each queen position on a row;
  * 

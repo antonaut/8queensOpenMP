@@ -3,12 +3,12 @@
 
 A solver to the 8 queens problem made to learn about OpenMP.
 
-See implementation details in hw3.c.
+See implementation details in 'hw3.c'.
 
 
 Building and running
 ====================
-Please use the bash script 'build_and_run.sh' provided with the lab.
+Please use the bash script 'build_and_run.sh' provided with the homework.
 
 Running Times
 =============

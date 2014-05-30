@@ -1,12 +1,12 @@
 /**
  * hw3.c - a.k.a. the 8-queens problem in parallel.
  * @author: Anton Erholt - <aerholt@kth.se>
- * 
+ *
  * Implemented using OpenMP.
- * 
+ *
  * A board is represented with the solution struct,
  * which contains an array of ints for each queen position on a row;
- * 
+ *
  * NOTE: The terminology is a bit unintuitive, a board with placed queens on it
  * is called a 'solution' and the program determines whether the solution is
  * correct or not.
@@ -40,8 +40,8 @@ struct solution
 };
 
 
-/* 
-  Variables 
+/*
+  Variables
  */
 
 int nsolutions,
@@ -188,13 +188,13 @@ void solve()
 {
     struct solution tmp;
     init_solution(&tmp);
-    
+
     // 8^8 = 16777216 // Max possible combinations of solutions
-    
+
     // Execute this region in parallel without tasks
 #pragma omp parallel for private(tmp, nsolutions)
     for (nsolutions = 0; nsolutions < 16777216 + 1; nsolutions++)
-    {        
+    {
         // Update board by using octal notation :-D
         int p = nsolutions;
         tmp.r[0] = p % 010;
@@ -208,7 +208,7 @@ void solve()
 
         if (is_correct(&tmp))
         {
-            
+
             // This might go faster if we use #pragma omp atomic
 #pragma omp critical
             {
@@ -237,8 +237,8 @@ int main( void )
             printf("Iteration %d\n", iter);
 
             total_time[iter] = 0;
-            
-            // Find all 92 solutions 4 times to make the program take about 
+
+            // Find all 92 solutions 4 times to make the program take about
             // 5 seconds to solve sequentially
             nsolved = 0;
 
@@ -256,6 +256,6 @@ int main( void )
                 printf("Total time(s): %f, %f, %f, %f, %f\n", total_time[0], total_time[1], total_time[2], total_time[3], total_time[4]);
         }
     }
-    
+
     return EXIT_SUCCESS;
 }
